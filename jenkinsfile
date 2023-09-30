@@ -1,5 +1,5 @@
 node {
-    agent any
+    
     stage('Stage_1'){
         try{
             echo 'Hello 1'
