@@ -1,6 +1,6 @@
 node {
     stage ('Code Checkout') {
-        steps  {
+        
             try {
                 echo 'Code Checkout'
                 checkout([$class: 'GitSCM', branches: [[name: '*/release1.0]], extensions: [], userRemoteConfigs: [[url: ‘https://github.com/Sukhanth-9821/threeTierWithTerraTest.git']]])
@@ -9,7 +9,7 @@ node {
             currentBuild.result = 'FAILURE'
             error("Build failed: ${e.message}")
         }
-        }
+        
     }
     stage('Stage_1'){
         try{
