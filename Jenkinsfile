@@ -46,13 +46,7 @@ node {
         }
     }
     stage('TF_Apply'){
-        when {
-               expression {
-                    // Check the user's choice
-                    return params.Decision == 'Yes'
-                }   
-        }
-        steps{   
+       steps{   
            sh 'terraform apply --auto-approve'
         }
     }
