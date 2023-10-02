@@ -44,16 +44,16 @@ node {
         }
     }
     stage('TF_Apply'){
-        try{
-           when {
+        when {
                expression {
                     // Check the user's choice
                     return params.Decision == 'Yes'
                 }   
-
-           }
+        }
+        steps{   
            sh 'terraform apply'
         }
+        
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
             error("Build failed: ${e.message}")
