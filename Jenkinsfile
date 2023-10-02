@@ -3,6 +3,7 @@ node {
     stage('Stage_1'){
         try{
             echo 'Hello 1one'
+            sh 'terraform plan'
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
