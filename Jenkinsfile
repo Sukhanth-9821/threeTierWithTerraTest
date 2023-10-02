@@ -3,6 +3,7 @@ node {
     stage('Stage_1'){
         try{
             echo 'Hello 1one'
+            sh 'pwd'
             sh 'ls -al'
         }
         catch(Exception e) {
