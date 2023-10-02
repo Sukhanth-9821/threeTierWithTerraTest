@@ -26,7 +26,7 @@ node {
     }
     stage('TF_Plan'){
         try{
-            echo 'terraform plan'
+            sh 'terraform plan'
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
