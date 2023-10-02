@@ -7,7 +7,7 @@ resource "aws_route_table" "publicroute" {
   }
 
   tags = {
-    Name = "PublicRouteTable"
+    Name = "ThreeTierPublicRT"
   }
 }
 resource "aws_route_table_association" "routeableAssociationWeb1" {
