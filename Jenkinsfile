@@ -53,11 +53,6 @@ node {
         steps{   
            sh 'terraform apply'
         }
-        
-        catch(Exception e) {
-            currentBuild.result = 'FAILURE'
-            error("Build failed: ${e.message}")
-        }
     }
     post {
         success {
