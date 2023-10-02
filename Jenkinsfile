@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 node {
     stage ('Code Checkout') {
         
@@ -33,7 +35,7 @@ node {
             error("Build failed: ${e.message}")
         }
     }
-    stage('Decision_Stage'){
+    stage('Apply_Decision'){
         try{
             input(id: 'userInput', message: 'Do you want to Apply Changes?', parameters: [
                     choice(choices: 'Yes\nNo', description: 'Choose Yes or No', name: 'Decision')])
@@ -51,9 +53,26 @@ node {
                 }   
         }
         steps{   
-           sh 'terraform apply'
+           sh 'terraform apply --auto-approve'
         }
     }
+    stage('Destroy_Decision'){
+        try{
+            input(id: 'userInput', message: 'Do you want to Destroy Changes?', parameters: [
+                    choice(choices: 'Yes\nNo', description: 'Choose Yes or No', name: 'Decision')])
+        }
+        catch(Exception e) {
+            currentBuild.result = 'FAILURE'
+            error("Build failed: ${e.message}")
+        }
+    }
+
+    stage ('TF_Destroy'){
+        try{
+            sh 'terraform destroy'
+        }
+    }
+
     post {
         success {
             echo 'Pipeline succeeded!'
