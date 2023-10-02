@@ -3,7 +3,10 @@ node {
         
             try {
                 echo 'Code Checkout'
-                checkout([$class: 'GitSCM', branches: [[name: '*/release1.0]], extensions: [], userRemoteConfigs: [[url: ‘https://github.com/Sukhanth-9821/threeTierWithTerraTest.git']]])
+                //checkout([$class: 'GitSCM', branches: [[name: '*/release1.0]], extensions: [], userRemoteConfigs: [[url: ‘https://github.com/Sukhanth-9821/threeTierWithTerraTest.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/release1.0']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Sukhanth-9821/threeTierWithTerraTest.git']]])
+                
+                
             }
               catch(Exception e) {
             currentBuild.result = 'FAILURE'
