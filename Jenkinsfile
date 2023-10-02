@@ -2,7 +2,7 @@ node {
     
     stage('Stage_1'){
         try{
-            echo 'Hello 1'
+            echo 'Hello 1one'
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
