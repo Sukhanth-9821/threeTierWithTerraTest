@@ -46,9 +46,7 @@ node {
         }
     }
     stage('TF_Apply'){
-       steps{   
-           sh 'terraform apply --auto-approve'
-        }
+       sh 'terraform apply --auto-approve'        
     }
     stage('Destroy_Decision'){
         try{
