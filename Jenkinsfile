@@ -14,19 +14,19 @@ node {
         }
         
     }
-    stage('Stage_1'){
+    stage('TF_Init'){
         try{
             echo 'Hello 1one'
-            sh 'terraform plan'
+            sh 'terraform init'
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
             error("Build failed: ${e.message}")
         }
     }
-    stage('Stage_2'){
+    stage('TF_Plan'){
         try{
-            echo 'Hello 2'
+            echo 'terraform plan'
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
