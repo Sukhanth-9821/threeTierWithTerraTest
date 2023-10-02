@@ -33,22 +33,38 @@ node {
             error("Build failed: ${e.message}")
         }
     }
-    stage('Stage_3'){
+    stage('Decision_Stage'){
         try{
-            echo 'Hello 3'
+            input(id: 'userInput', message: 'Do you want to Apply Changes?', parameters: [
+                    choice(choices: 'Yes\nNo', description: 'Choose Yes or No', name: 'Decision')])
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
             error("Build failed: ${e.message}")
         }
     }
-    stage('Stage_4'){
+    stage('TF_Apply'){
         try{
-            echo 'Hello 4'
+           when {
+               expression {
+                    // Check the user's choice
+                    return params.Decision == 'Yes'
+                }   
+
+           }
+           sh 'terraform apply'
         }
         catch(Exception e) {
             currentBuild.result = 'FAILURE'
             error("Build failed: ${e.message}")
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
