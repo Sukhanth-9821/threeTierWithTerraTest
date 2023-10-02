@@ -3,7 +3,7 @@ resource "aws_subnet" "websnetA" {
   cidr_block = var.webcidr
   availability_zone = "ap-south-1a"
   tags = {
-    Name = "ThreeTierWebSnet"
+    Name = "ThreeTierWebSnetA"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_subnet" "websnetB" {
   cidr_block = "30.0.2.0/24"
   availability_zone = "ap-south-1b"
   tags = {
-    Name = "ThreeTierWebSnet"
+    Name = "ThreeTierWebSnetB"
   }
 }
 
