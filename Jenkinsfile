@@ -71,6 +71,10 @@ node {
         try{
             sh 'terraform destroy'
         }
+        catch(Exception e) {
+            currentBuild.result = 'FAILURE'
+            error("Build failed: ${e.message}")
+        }
     }
 
     post {
