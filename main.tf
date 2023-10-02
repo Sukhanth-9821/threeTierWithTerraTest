@@ -21,8 +21,8 @@ module "Igw"{
 module "routetable"{
   source = "./RouteTable"
   vpcid = module.vpc.vpcid
-  subnetid1 = module.subnet.websnetidA
-  subnetid2 = module.subnet.websnetidB 
+  subnetidW1 = module.subnet.websnetidA
+  subnetidW2 = module.subnet.websnetidB 
   gatewayid = module.Igw.aws_internet_gateway_id
 }
 

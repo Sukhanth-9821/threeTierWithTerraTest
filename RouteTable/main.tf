@@ -1,4 +1,4 @@
-resource "aws_route_table" "example" {
+resource "aws_route_table" "publicroute" {
   vpc_id = var.vpcid
 
   route {
@@ -10,7 +10,11 @@ resource "aws_route_table" "example" {
     Name = "PublicRouteTable"
   }
 }
-resource "aws_route_table_association" "a" {
-  subnet_id      = var.subnetid
-  route_table_id = aws_route_table.example.id
+resource "aws_route_table_association" "routeableAssociationWeb1" {
+  subnet_id      = var.subnetidW1
+  route_table_id = aws_route_table.publicroute.id
+}
+resource "aws_route_table_association" "routeableAssociationweb2" {
+  subnet_id      = var.subnetidW2
+  route_table_id = aws_route_table.publicroute.id
 }
